@@ -4,4 +4,12 @@
     <string name="true_button">True</string>
     <string name="false_button">False</string>
     <string name="question_text">My name is Mathanagopal</string>
+    <string name="next_button">Next</string>
+    <string name="q_name">Mathanagopal is my name</string>
+    <string name="q_age">My age is 25</string>
+    <string name="q_height">Mt height is 5 feet</string>
+    <string name="q_weight">My weight is 185lb</string>
+    <string name="q_birth">I was born in Malaysia</string>
+    <string name="correct_toast">Correct</string>
+    <string name="incorrect_toast">InCorrect</string>
 </resources>

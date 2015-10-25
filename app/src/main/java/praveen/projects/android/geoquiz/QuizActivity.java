@@ -9,33 +9,52 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Button;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class QuizActivity extends AppCompatActivity {
 
     private Button bTrueButton;
     private Button bFalseButton;
+    private Button bNextButton;
+    private TextView tQuestion_View;
+    private int mCurrentIndex;
+    private Question cQues;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-        bTrueButton = (Button)findViewById(R.id.true_button);
-        bFalseButton = (Button)findViewById(R.id.false_button);
+        mCurrentIndex = 0;
+        bTrueButton = (Button) findViewById(R.id.true_button);
+        bFalseButton = (Button) findViewById(R.id.false_button);
+        bNextButton = (Button) findViewById(R.id.next_button);
+        tQuestion_View = (TextView) findViewById(R.id.question_text_box);
+
+        cQues = QuestionBank.qBank.get(mCurrentIndex);
+        tQuestion_View.setText(cQues.getqId());
         bTrueButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuizActivity.this,R.string.true_button,Toast.LENGTH_SHORT).show();
+                checkAnswer(true);
             }
         });
 
         bFalseButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(QuizActivity.this, R.string.false_button,Toast.LENGTH_SHORT).show();
+                checkAnswer(false);
             }
         });
 
-
+        bNextButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                mCurrentIndex++;
+                mCurrentIndex = mCurrentIndex % QuestionBank.qBank.size();
+                tQuestion_View.setText(QuestionBank.qBank.get(mCurrentIndex).getqId());
+            }
+        });
 
 
 //        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
@@ -49,6 +68,13 @@ public class QuizActivity extends AppCompatActivity {
 //                        .setAction("Action", null).show();
 //            }
 //        });
+    }
+
+    private void checkAnswer(boolean selected){
+        if (QuestionBank.qBank.get(mCurrentIndex).getQans() == selected)
+            Toast.makeText(QuizActivity.this, R.string.correct_toast, Toast.LENGTH_SHORT).show();
+        else
+            Toast.makeText(QuizActivity.this, R.string.incorrect_toast, Toast.LENGTH_SHORT).show();
     }
 
     @Override
