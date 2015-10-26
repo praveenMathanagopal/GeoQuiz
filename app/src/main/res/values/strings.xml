@@ -13,4 +13,9 @@
     <string name="q_birth">I was born in Malaysia</string>
     <string name="correct_toast">Correct</string>
     <string name="incorrect_toast">InCorrect</string>
+    <string name="title_activity_cheat">CheatActivity</string>
+    <string name="warn_text">You sure u wanna cheat ?</string>
+    <string name="cheat_label">CHEAT!</string>
+    <string name="cheat_notice">You Cheated!!</string>
+
 </resources>
